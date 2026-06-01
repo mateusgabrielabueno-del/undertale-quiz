@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quiz Undertale Corrigido</title>
+<style>
+body{
+background:#000;
+color:white;
+font-family:Arial;
+text-align:center;
+padding:20px;
+}
+#quiz{max-width:800px;margin:auto}
+button{
+display:block;
+width:100%;
+margin:10px 0;
+padding:15px;
+font-size:18px;
+cursor:pointer;
+}
+#bar{
+height:20px;
+background:#333;
+border-radius:10px;
+overflow:hidden;
+margin-bottom:15px;
+}
+#fill{
+height:100%;
+width:0%;
+background:lime;
+}
+</style>
+</head>
+<body>
+
+<h1>💀 Quiz Undertale (30 Perguntas)</h1>
+
+<div id="bar"><div id="fill"></div></div>
+
+<div id="quiz"></div>
+
+<script>
+const perguntas=[
+{q:"Qual é o nome do protagonista humano?",o:["Frisk","Sans","Papyrus","Alphys"],a:0},
+{q:"Quem é o esqueleto preguiçoso?",o:["Sans","Papyrus","Asgore","Flowey"],a:0},
+{q:"Quem adora espaguete?",o:["Papyrus","Sans","Toriel","Undyne"],a:0},
+{q:"Quem diz 'it's a beautiful day outside'?",o:["Sans","Papyrus","Flowey","Asriel"],a:0},
+{q:"Quem é a rainha das Ruínas?",o:["Toriel","Undyne","Alphys","Muffet"],a:0},
+{q:"Quem é o rei dos monstros?",o:["Asgore","Sans","Napstablook","Asriel"],a:0},
+{q:"Quem é a cientista real?",o:["Alphys","Toriel","Undyne","Mettaton"],a:0},
+{q:"Qual personagem é uma flor?",o:["Flowey","Asriel","Sans","Temmie"],a:0},
+{q:"Quem é o robô apresentador?",o:["Mettaton","Napstablook","Papyrus","Asgore"],a:0},
+{q:"Quem ama anime?",o:["Alphys","Toriel","Undyne","Muffet"],a:0},
+{q:"Quem é a capitã da guarda real?",o:["Undyne","Toriel","Alphys","Muffet"],a:0},
+{q:"Qual rota evita matar monstros?",o:["Pacifista","Genocida","Neutra","Rápida"],a:0},
+{q:"Qual rota derrota todos os monstros?",o:["Genocida","Pacifista","Neutra","Amizade"],a:0},
+{q:"Qual é o nome do irmão de Sans?",o:["Papyrus","Asgore","Asriel","Temmie"],a:0},
+{q:"Quem vende teias e doces?",o:["Muffet","Toriel","Alphys","Undyne"],a:0},
+{q:"Quem é um fantasma tímido?",o:["Napstablook","Sans","Asgore","Flowey"],a:0},
+{q:"Quem criou Undertale?",o:["Toby Fox","Notch","Sakurai","Miyamoto"],a:0},
+{q:"Quem mora na Tem Village?",o:["Temmies","Sans","Guardas","Fantasmas"],a:0},
+{q:"Qual alma representa determinação?",o:["Vermelha","Azul","Verde","Roxa"],a:0},
+{q:"Quem era Flowey originalmente?",o:["Asriel","Sans","Asgore","Papyrus"],a:0},
+{q:"Onde o jogo começa?",o:["Ruínas","Snowdin","Hotland","Core"],a:0},
+{q:"Quem usa uma lança?",o:["Undyne","Toriel","Sans","Alphys"],a:0},
+{q:"Quem faz trocadilhos?",o:["Sans","Undyne","Asgore","Muffet"],a:0},
+{q:"Quem gosta de torta?",o:["Toriel","Papyrus","Flowey","Mettaton"],a:0},
+{q:"Qual área tem neve?",o:["Snowdin","Hotland","Core","Ruínas"],a:0},
+{q:"Qual área tem lava?",o:["Hotland","Snowdin","Ruínas","Waterfall"],a:0},
+{q:"Quem criou Mettaton?",o:["Alphys","Asgore","Sans","Toriel"],a:0},
+{q:"Quem fala NYEH HEH HEH?",o:["Papyrus","Sans","Asriel","Flowey"],a:0},
+{q:"Quem absorve almas no final Pacifista?",o:["Asriel","Muffet","Temmie","Napstablook"],a:0},
+{q:"Qual é o slogan famoso de Undertale?",o:["The RPG game where nobody has to die","Monster Adventure","Soul Quest","Underground Escape"],a:0}
+];
+
+let atual=0;
+let pontos=0;
+
+function mostrar(){
+document.getElementById("fill").style.width=(atual/perguntas.length*100)+"%";
+
+if(atual>=perguntas.length){
+let rank="Humano";
+if(pontos>=10) rank="Monstro";
+if(pontos>=20) rank="Determinação";
+if(pontos>=28) rank="Sans";
+document.getElementById("quiz").innerHTML=
+"<h2>Fim do Quiz!</h2><h1>"+pontos+"/30</h1><h2>Rank: "+rank+"</h2>";
+return;
+}
+
+let p=perguntas[atual];
+let h="<h2>"+(atual+1)+". "+p.q+"</h2>";
+
+for(let i=0;i<p.o.length;i++){
+h+='<button onclick="responder('+i+')">'+p.o[i]+'</button>';
+}
+
+document.getElementById("quiz").innerHTML=h;
+}
+
+function responder(i){
+if(i===perguntas[atual].a) pontos++;
+atual++;
+mostrar();
+}
+
+mostrar();
+</script>
+
+</body>
+</html>
